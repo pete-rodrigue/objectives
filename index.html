@@ -1,3 +1,56 @@
+<style>
+body {
+  background-color: black;
+  color: green;
+  font-family: 'Courier New', monospace;
+}
+</style>
+
+<script>
+
+var id = '197RBjLScyoV_DZC8rsLhj2EacEPzQdfwmpTR2s98Cqs';
+var gid1 = '0';
+var gid2 = '364879487';
+var url1 = 'https://docs.google.com/spreadsheets/d/'+id+'/gviz/tq?tqx=out:json&tq&gid='+gid1;
+var url2 = 'https://docs.google.com/spreadsheets/d/'+id+'/gviz/tq?tqx=out:json&tq&gid='+gid2;
+  
+fetch(url2)
+      .then(response => response.text())
+      .then(data => myObjectives(data));
+function myObjectives(jsonString){
+  jsonString = jsonString.substring(47).slice(0, -2);
+  var json = JSON.parse(jsonString)['table']['rows'];
+  
+  document.getElementById("objective1").innerHTML=json[1]['c'][0]['v'];
+  document.getElementById("objective2").innerHTML=json[2]['c'][0]['v'];
+  document.getElementById("objective3").innerHTML=json[3]['c'][0]['v'];
+  return None;
+}
+
+fetch(url1)
+      .then(response => response.text())
+      .then(data => myItems(data));
+
+function myItems(jsonString){
+  jsonString = jsonString.substring(47).slice(0, -2);
+  var json = JSON.parse(jsonString)['table']['rows'];
+  var count = Object.keys(json).length;
+  var arr = [];
+//    get 3 random indices between 0 and the number of exercises in the sheet
+  while(arr.length < 3){
+      var r = Math.floor(Math.random() * count) + 1;
+      if(arr.indexOf(r) === -1) arr.push(r);
+  }
+  
+  document.getElementById("workout1").innerHTML="50 " + json[arr[0]]['c'][0]['v'];
+  document.getElementById("workout2").innerHTML="50 " + json[arr[1]]['c'][0]['v'];
+  document.getElementById("workout3").innerHTML="50 " + json[arr[2]]['c'][0]['v'];
+  
+  return None;
+}
+</script>
+
+
 
 <div id="objectives title">OBJECTIVES</div>
 <br/>
