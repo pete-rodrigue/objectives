@@ -52,7 +52,7 @@ function myObjectives(jsonString){
   document.getElementById("objective1").innerHTML=json[1]['c'][0]['v'];
   document.getElementById("objective2").innerHTML=json[2]['c'][0]['v'];
   document.getElementById("objective3").innerHTML=json[3]['c'][0]['v'];
-  return None;
+  return "";
 }
 
 fetch(url1)
@@ -74,7 +74,7 @@ function myItems(jsonString){
   document.getElementById("workout2").innerHTML="50 " + json[arr[1]]['c'][0]['v'];
   document.getElementById("workout3").innerHTML="50 " + json[arr[2]]['c'][0]['v'];
   
-  return None;
+  return "";
 }
 </script>
 
